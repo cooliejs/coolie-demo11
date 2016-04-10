@@ -5,11 +5,11 @@
  */
 
 
-describe('circle.js', function () {
+describe('square.js', function () {
     // 模块加载器配置
     coolie.config({
         base: coolie.dirname
-    }).use('test/app-main.js');
+    }).use('test/main.js');
 
     var square = null;
 
@@ -24,12 +24,12 @@ describe('circle.js', function () {
     // 方形面积
     it('.getArea', function () {
         // 边长为 1 的正方形
-        expect(exports.getArea(1, 1)).toEqual(1);
+        expect(square.getArea(1, 1)).toEqual(1);
     });
 
-    // 方形周长
-    it('.getCircumference', function (done) {
-        // 边长为 1 的正方形
-        expect(exports.getCircumference(1, 1)).toEqual(4);
-    });
+    //// 方形周长
+    //it('.getCircumference', function () {
+    //    // 边长为 1 的正方形
+    //    expect(square.getCircumference(1, 1)).toEqual(4);
+    //});
 });

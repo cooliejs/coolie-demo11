@@ -9,7 +9,7 @@ describe('circle.js', function () {
     // 模块加载器配置
     coolie.config({
         base: coolie.dirname
-    }).use('test/app-main.js');
+    }).use('test/main.js');
 
     var circle = null;
 

@@ -28,7 +28,7 @@ module.exports = function (config) {
             },
             {
                 // 加载 test 下的入口文件，但不直接引入，使用模块加载器引入
-                pattern: './test/app-main.js',
+                pattern: './test/main.js',
                 included: false
             },
             // 直接引入测试主文件
