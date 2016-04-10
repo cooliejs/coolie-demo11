@@ -32,7 +32,7 @@ module.exports = function (config) {
                 included: false
             },
             // 直接引入测试主文件
-            './test/test-main.js'
+            './test/test.*.js'
         ],
 
 
