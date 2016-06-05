@@ -1,15 +1,17 @@
-/**
- * 入口
- * @author ydr.me
- * @create 2016-04-09 00:04
- */
+(function (__karma__, coolie) {
+    var tests = [];
 
+    for (var file in __karma__.files) {
+        if (__karma__.files.hasOwnProperty(file)) {
+            if (/\/test\.[^/]*\.js$/i.test(file)) {
+                tests.push(file);
+            }
+        }
+    }
 
-define(function (require, exports, module) {
-    'use strict';
-    
-    module.exports = {
-        circle: require('../src/circle.js'),
-        square: require('../src/square.js')
-    };
-});
+    coolie.use(tests);
+
+    coolie.callback(function () {
+        __karma__.start.call();
+    });
+})(window.__karma__, coolie);

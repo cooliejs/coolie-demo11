@@ -1,17 +1,24 @@
-// Karma configuration
-// Generated on Mon Nov 17 2014 14:46:48 GMT+0800 (中国标准时间)
+/**
+ * karma 测试配置文件
+ * @author ydr.me
+ * @create 2016-04-20 21:15
+ */
+
+
+'use strict';
+
 
 module.exports = function (config) {
     config.set({
 
         // base path that will be used to resolve all patterns (eg. files, exclude)
-        basePath: '',
+        basePath: './',
 
 
         // frameworks to use
         // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
         // 单元测试框架
-        frameworks: ['jasmine'],
+        frameworks: ['jasmine', 'coolie'],
 
 
         client: {},
@@ -19,24 +26,26 @@ module.exports = function (config) {
 
         // list of files / patterns to load in the browser
         files: [
-            // 直接引入模块加载器
-            './coolie.js',
             {
                 // 加载 src 下的原始文件，但不直接引入，使用模块加载器引入
                 pattern: './src/**',
                 included: false
             },
             {
-                // 加载 test 下的入口文件，但不直接引入，使用模块加载器引入
-                pattern: './test/main.js',
+                // 加载 src 下的原始文件，但不直接引入，使用模块加载器引入
+                pattern: './test/**',
                 included: false
             },
-            // 直接引入测试主文件
-            './test/test.*.js'
+            {
+                // 加载 test 下的入口文件，但不直接引入，使用模块加载器引入
+                pattern: './test/main.js',
+                included: true
+            }
         ],
 
 
         // list of files to exclude
+        include: [],
         exclude: [],
 
 
@@ -44,15 +53,16 @@ module.exports = function (config) {
         // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
         preprocessors: {
             // 原始模块，需要测试覆盖率
-            './src/**': ['coverage']
+            './src/**.js': ['coverage']
         },
 
 
         // optionally, configure the reporter
         // 覆盖率报告
         coverageReporter: {
-            type: 'lcov',
-            dir: './coverage/'
+            reporters: [{
+                type: 'text-summary'
+            }]
         },
 
 
@@ -60,7 +70,7 @@ module.exports = function (config) {
         // possible values: 'dots', 'progress'
         // available reporters: https://npmjs.org/browse/keyword/karma-reporter
         // 报告类型
-        reporters: ['progress', 'coveralls', 'coverage'],
+        reporters: ['progress', 'coverage'],
 
 
         // web server port
@@ -82,15 +92,31 @@ module.exports = function (config) {
 
         // start these browsers
         // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-        browsers: [],
+        browsers: ['Chrome'],
 
 
         // Continuous Integration mode
         // if true, Karma captures browsers, runs the tests and exits
-        singleRun: true,
+        singleRun: false,
+
+
+        // Concurrency level
+        // how many browser should be started simultaneous
+        concurrency: Infinity,
+
+
+        customLaunchers: {
+            Chrome_travis_ci: {
+                base: 'Chrome',
+                flags: ['--no-sandbox']
+            }
+        },
 
 
         // plugins
         plugins: ['karma-*']
     });
 };
+
+
+
